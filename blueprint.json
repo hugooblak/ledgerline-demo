@@ -1,0 +1,77 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Ledger Line: one-page accounting firm site with a live month-end hero and a booking form",
+		"description": "Block theme for a small-business accounting firm: three hero panels that play a month (receipts, checklist, profit and loss that always adds up), how it works, services with small moving graphics, a founder note, FAQ and a book-a-call form (demo only, sends nothing). Built for a fictional firm.",
+		"author": "hugooblak",
+		"categories": [
+			"Themes"
+		]
+	},
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/hugooblak/ledgerline-demo",
+				"ref": "main",
+				"refType": "branch",
+				"path": "theme/ledgerline"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/hugooblak/ledgerline-demo",
+				"ref": "main",
+				"refType": "branch",
+				"path": "plugins/ledgerline-blocks"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/hugooblak/ledgerline-demo",
+				"ref": "main",
+				"refType": "branch",
+				"path": "plugins/ledgerline-demo-notes"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/ledgerline-setup"
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/ledgerline-setup/setup.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/hugooblak/ledgerline-demo/main/content/setup.php"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/wp-content/ledgerline-setup/setup.php';"
+		}
+	]
+}

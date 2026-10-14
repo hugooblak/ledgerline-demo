@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ledgerline/viz",
+	"title": "Service graphic",
+	"category": "widgets",
+	"icon": "chart-line",
+	"description": "The small moving graphic on a service card: transactions getting their categories, the estimated tax dates lighting up in turn, or a cash-flow line drawing itself.",
+	"textdomain": "ledgerline-blocks",
+	"attributes": {
+		"type": { "type": "string", "default": "transactions", "enum": [ "transactions", "dates", "flow" ] },
+		"transactions": { "type": "string", "default": "Coffee supplier | -$412.80 | Inventory\nSquare deposit | +$2,184.50 | Sales\nElectric bill | -$238.16 | Utilities\nGusto payroll | -$6,940.00 | Payroll" },
+		"dates": { "type": "string", "default": "15 Apr\n15 Jun\n15 Sep\n15 Jan" },
+		"datesLabel": { "type": "string", "default": "Estimated tax dates" },
+		"flowLabel": { "type": "string", "default": "Cash, next 13 weeks" }
+	},
+	"supports": { "html": false, "reusable": false },
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

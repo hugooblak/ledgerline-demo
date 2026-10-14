@@ -1,0 +1,77 @@
+/* Hero panels. Without JavaScript (and in the editor) they show the finished state.
+   With JavaScript (html.js) they start empty and view.js plays them once: receipts settle,
+   checklist ticks, profit and loss counts up, each panel gets its chip. No text ever fades,
+   so contrast checkers never catch it half-drawn. */
+
+.llb-panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+.llb-panel { position: relative; margin: 0; border-radius: 20px; overflow: hidden; aspect-ratio: 57 / 66; background: #EFE8DA; isolation: isolate; }
+.llb-panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; }
+
+.llb-chip {
+	position: absolute; top: 18px; right: 18px; z-index: 4; display: flex; align-items: center; gap: 8px;
+	height: 40px; padding: 0 14px 0 10px; border-radius: 12px; background: #FFFDF8; color: #141210;
+	box-shadow: 0 2px 8px rgba(20,18,16,.08);
+	font: 500 11.5px/1 var(--wp--preset--font-family--mono); letter-spacing: .08em; text-transform: uppercase;
+	transition: transform .5s cubic-bezier(.3,1.6,.5,1);
+}
+.llb-chip svg { width: 20px; height: 20px; flex: none; }
+.js .llb-panel:not(.done) .llb-chip { transform: scale(0); }
+
+.llb-label { font: 500 12px/1.4 var(--wp--preset--font-family--mono); letter-spacing: .08em; text-transform: uppercase; margin: 0; }
+
+/* 1: receipts */
+.llb-receipts > img { object-position: 50% 92%; transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+.js .llb-receipts:not(.go) > img { transform: translateY(-7%) scale(1.12) rotate(-2deg); }
+.llb-count {
+	position: absolute; left: 18px; bottom: 18px; z-index: 3; margin: 0; padding: 9px 12px; border-radius: 10px;
+	background: #FFFDF8; color: #141210; box-shadow: 0 2px 8px rgba(20,18,16,.08);
+	font: 500 12px/1 var(--wp--preset--font-family--mono); letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* 2: month-end checklist */
+.llb-close { background: linear-gradient(180deg, #FFD6B3 0%, #F6E3CF 45%, #D3E6F3 100%); display: grid; place-items: center; padding: 74px 28px 28px; }
+.llb-ck { width: min(100%, 400px); background: #FFFDF8; border-radius: 14px; padding: 20px 22px 18px; }
+.llb-ck .llb-label { margin-bottom: 12px; }
+.llb-ck ul { list-style: none; margin: 0; padding: 0; }
+.llb-ck li { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 12px; padding: 9px 0; border-top: 1px solid rgba(20,18,16,.14); font-size: 15px; line-height: 1.3; }
+.llb-ck li i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: #2F8A4C; border: 1.5px solid #2F8A4C; transition: background .3s, border-color .3s; }
+.llb-ck li i svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; stroke-dasharray: 20; stroke-dashoffset: 0; transition: stroke-dashoffset .35s .1s cubic-bezier(.2,.7,.2,1); }
+.js .llb-close:not(.done) li:not(.on) i { background: transparent; border-color: rgba(20,18,16,.25); }
+.js .llb-close:not(.done) li:not(.on) i svg { stroke-dashoffset: 20; }
+.llb-ck li em { font: 500 12px/1 var(--wp--preset--font-family--mono); font-style: normal; color: #5C574F; }
+.llb-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(20,18,16,.14); padding-top: 14px; margin: 4px 0 0; }
+.llb-status { font: 500 11px/1 var(--wp--preset--font-family--mono); letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px; border-radius: 999px; background: #EFE8DA; color: #4E4A43; transition: background .4s, color .4s; }
+.llb-status.ok { background: #D9EFDF; color: #1F6B37; }
+
+/* 3: profit and loss over the calculator photo */
+.llb-pl { background: #F3ECDF; }
+.llb-pl > img { transform: scale(1.45) translate(14%, 3%); }
+.llb-sheet {
+	position: absolute; left: 7%; top: 9%; width: 70%; background: #FFFEFB; border-radius: 4px; padding: 24px 22px 20px; color: #141210;
+	box-shadow: 0 1px 2px rgba(20,18,16,.08), 0 10px 30px rgba(20,18,16,.08);
+	transform: rotate(-1.5deg); clip-path: inset(0 0 0 0); transition: transform 1s cubic-bezier(.2,.7,.2,1), clip-path 1s cubic-bezier(.2,.7,.2,1);
+}
+.js .llb-pl:not(.go) .llb-sheet { transform: rotate(-1.5deg) translateY(14px); clip-path: inset(0 0 100% 0); }
+.llb-sheet p { margin: 0; }
+.llb-sheet-title { font: 800 17px/1 var(--wp--preset--font-family--display); letter-spacing: .02em; text-transform: uppercase; }
+.llb-per { font-size: 12.5px; color: #5C574F; margin: 5px 0 14px !important; }
+.llb-net { font: 800 clamp(30px, 3.4vw, 44px)/1 var(--wp--preset--font-family--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; padding-bottom: 12px; border-bottom: 2px solid #141210; margin: 4px 0 6px !important; }
+.llb-sheet dl { display: grid; grid-template-columns: 1fr auto; font-size: 12.5px; margin: 0; }
+.llb-sheet dt, .llb-sheet dd { padding: 7px 0; margin: 0; border-bottom: 1px solid rgba(20,18,16,.14); }
+.llb-sheet dt { font: 500 10.5px/1.6 var(--wp--preset--font-family--mono); letter-spacing: .06em; text-transform: uppercase; }
+.llb-sheet dd { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+.llb-sheet .tot { border-bottom: 0; font-weight: 700; }
+
+@media (max-width: 1000px) {
+	.llb-panels { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+	.llb-panel { aspect-ratio: 16 / 11; }
+	.llb-receipts > img { object-position: 50% 80%; }
+}
+@media (max-width: 720px) {
+	.llb-panel { aspect-ratio: auto; min-height: 440px; }
+	.llb-close { padding: 70px 16px 20px; }
+	.llb-sheet { width: 80%; left: 6%; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.llb-panels *, .llb-panels *::before { transition: none !important; }
+}

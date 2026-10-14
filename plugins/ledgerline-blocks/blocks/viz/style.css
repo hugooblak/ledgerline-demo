@@ -1,0 +1,46 @@
+/* Service graphics. Finished state by default; with JavaScript each one starts empty and plays
+   once when it scrolls into view. Category tags slide in, they never fade, so contrast checks hold. */
+
+.llb-viz { position: relative; height: 170px; border-radius: 14px; background: #F7F1E6; margin-bottom: 10px; overflow: hidden; padding: 16px; color: #141210; }
+.llb-viz-label { position: absolute; left: 16px; bottom: 12px; margin: 0; color: #5C574F; font: 500 12px/1.4 var(--wp--preset--font-family--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+/* transactions */
+.llb-tx { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.llb-tx li { justify-items: start; text-align: left; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; font-size: 13px; line-height: 1.2; }
+.llb-tx .llb-who { justify-self: start; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.llb-tx .llb-amt { font-variant-numeric: tabular-nums; color: #5C574F; }
+.llb-tx b {
+	font: 500 10.5px/1 var(--wp--preset--font-family--mono); letter-spacing: .06em; text-transform: uppercase;
+	padding: 6px 9px; border-radius: 999px; background: #FFFDF8; border: 1px solid rgba(20,18,16,.14);
+	transition: transform .5s cubic-bezier(.2,.7,.2,1), clip-path .5s cubic-bezier(.2,.7,.2,1); clip-path: inset(0 0 0 0 round 999px);
+}
+.js .llb-viz-transactions:not(.in) .llb-tx b { transform: translateX(30px); clip-path: inset(0 0 0 100% round 999px); }
+.llb-tx li:nth-child(2) b { transition-delay: .25s; }
+.llb-tx li:nth-child(3) b { transition-delay: .5s; }
+.llb-tx li:nth-child(4) b { transition-delay: .75s; }
+
+/* dates */
+.llb-dates { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; height: calc(100% - 28px); align-content: center; }
+.llb-dates li { border: 1.5px solid rgba(20,18,16,.14); border-radius: 12px; padding: 12px 6px; text-align: center; transition: background .4s, color .4s, border-color .4s; }
+.llb-dates b { display: block; font: 800 26px/1 var(--wp--preset--font-family--display); letter-spacing: -.02em; }
+.llb-dates span { font: 500 10.5px/1 var(--wp--preset--font-family--mono); letter-spacing: .08em; text-transform: uppercase; }
+.llb-dates li.on { background: #141210; color: #F7F1E6; border-color: #141210; }
+
+/* cash flow */
+.llb-viz-flow svg { position: absolute; inset: 16px 16px 34px; width: calc(100% - 32px); height: calc(100% - 50px); overflow: visible; }
+.llb-viz-flow .line { fill: none; stroke: #141210; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.llb-viz-flow .area { fill: rgba(47,138,76,.10); transition: opacity .8s .9s; }
+.llb-viz-flow circle { fill: #2F8A4C; transform-box: fill-box; transform-origin: center; transition: transform .4s 1.3s cubic-bezier(.3,1.6,.5,1); }
+.js .llb-viz-flow:not(.in) .area { opacity: 0; }
+.js .llb-viz-flow:not(.in) circle { transform: scale(0); }
+
+@media (max-width: 380px) {
+	.llb-viz { padding: 12px; }
+	.llb-tx li { font-size: 12px; gap: 6px; }
+	.llb-tx b { padding: 5px 7px; font-size: 9.5px; }
+	.llb-dates { gap: 5px; }
+	.llb-dates b { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.llb-viz *, .llb-viz *::before { transition: none !important; }
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ledgerline/book-form",
+	"title": "Book a call form (demo)",
+	"category": "widgets",
+	"icon": "email-alt",
+	"description": "Name, email and type of business. Demo only: nothing is sent and the form says so. A real site connects this to a form plugin or the firm's calendar.",
+	"textdomain": "ledgerline-blocks",
+	"attributes": {
+		"nameLabel": { "type": "string", "default": "Your name" },
+		"emailLabel": { "type": "string", "default": "Email" },
+		"typeLabel": { "type": "string", "default": "Your business" },
+		"choose": { "type": "string", "default": "Choose one" },
+		"types": { "type": "string", "default": "Café or restaurant\nTrades and construction\nShop or online store\nStudio or agency\nSomething else" },
+		"button": { "type": "string", "default": "Book a free call" },
+		"note": { "type": "string", "default": "Demo form. Nothing is sent." },
+		"thanksTitle": { "type": "string", "default": "Thanks. You're on the list." },
+		"thanksText": { "type": "string", "default": "We'll email you to pick a time for the call." },
+		"errorText": { "type": "string", "default": "Please fill in this field." },
+		"emailError": { "type": "string", "default": "Please enter an email address like name@example.com." }
+	},
+	"supports": { "html": false, "reusable": false, "multiple": false },
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,25 @@
+/* Book-a-call form, drawn for the dark booking card. */
+.llb-form { display: grid; gap: 14px; }
+.llb-form[hidden], .llb-thanks[hidden] { display: none; }
+.llb-field { display: grid; gap: 8px; margin: 0; }
+.llb-field label { font: 500 11px/1 var(--wp--preset--font-family--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(247,241,230,.8); }
+.llb-field input, .llb-field select {
+	height: 54px; border-radius: 14px; border: 1.5px solid rgba(247,241,230,.35); background: rgba(247,241,230,.06);
+	color: #F7F1E6; padding: 0 16px; font: 400 16px var(--wp--preset--font-family--body); width: 100%;
+}
+.llb-field select option { color: #141210; }
+.llb-field input:focus-visible, .llb-field select:focus-visible { outline: 3px solid #F2B632; outline-offset: 2px; border-color: #F2B632; }
+.llb-field [aria-invalid="true"] { border-color: #FFB4A2; }
+.llb-err { font-size: 14px; color: #FFC9BC; min-height: 0; }
+.llb-err:empty { display: none; }
+.llb-go {
+	margin-top: 8px; width: 100%; min-height: 52px; border: 0; border-radius: 999px; cursor: pointer;
+	background: #F2B632; color: #141210; font: 500 13px/1 var(--wp--preset--font-family--mono); letter-spacing: .1em; text-transform: uppercase;
+	transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s;
+}
+.llb-go:hover { transform: translateY(-2px); background: #F5C04A; }
+.llb-go:focus-visible { outline: 3px solid #F7F1E6; outline-offset: 3px; }
+.llb-note { margin: 0; font-size: 14px; color: rgba(247,241,230,.75); }
+.llb-thanks-title { font: 800 32px/1.05 var(--wp--preset--font-family--display); letter-spacing: -.03em; color: #F7F1E6; margin: 0 0 10px; }
+.llb-thanks p { color: rgba(247,241,230,.85); margin: 0; }
+.llb-thanks:focus { outline: none; }
