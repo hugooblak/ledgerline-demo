@@ -178,6 +178,10 @@ html :where(.wp-block) { max-width: none; }
 .not-found { padding: 120px 0 40px; }
 .not-found .sec-sub { margin: 18px 0 30px; }
 
+/* Editor only: the page's sections are full width on the site, so do not squeeze them to the
+   720px content width the editor uses for top-level blocks. */
+.block-editor-block-list__layout.is-root-container.is-root-container > * { max-width: none; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .hero-top { grid-template-columns: 1fr; }

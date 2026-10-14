@@ -20,6 +20,6 @@ Run on 2026-10-14 against a fresh WordPress install with the demo content. Local
 
 | Page | Speed | Accessibility | Best practices | SEO | LCP | CLS |
 |---|---|---|---|---|---|---|
-| / | 93 | 100 | 100 | 100 | 2.9 s | 0 |
+| / | 93 | 100 | 100 | 100 | 2.8 s | 0 |
 
 Automated tests cannot catch every accessibility or design problem. A real project adds manual screen reader testing.
